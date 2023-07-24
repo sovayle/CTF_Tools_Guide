@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "testing the git sync.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "testing the git sync.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "testing the git sync.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "testing the git sync.md"
+                "file": "README.md"
               }
             }
           }
@@ -161,8 +161,8 @@
   },
   "active": "f5d49ccc33569607",
   "lastOpenFiles": [
-    "README.md",
     "testing the git sync.md",
+    "README.md",
     "new.md"
   ]
 }
