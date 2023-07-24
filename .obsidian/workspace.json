@@ -20,6 +20,18 @@
             }
           },
           {
+            "id": "98358e0527f27d69",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "changed the vault name.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "f5d49ccc33569607",
             "type": "leaf",
             "state": {
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "new.md",
+                "file": "changed the vault name.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "new.md",
+                "file": "changed the vault name.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "new.md"
+                "file": "changed the vault name.md"
               }
             }
           }
@@ -159,10 +171,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f5d49ccc33569607",
+  "active": "98358e0527f27d69",
   "lastOpenFiles": [
     "README.md",
-    "testing the git sync.md",
-    "new.md"
+    "changed the vault name.md",
+    "new.md",
+    "testing the git sync.md"
   ]
 }
