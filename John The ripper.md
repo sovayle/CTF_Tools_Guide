@@ -49,4 +49,39 @@ rar2john
 ssh2john
 
 
+`ssh2john [id_rsa private key file] > [output file]`
+**Example Usage**
+
+ssh2john id_rsa > id_rsa_hash.txt
+
+`john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
