@@ -46,6 +46,8 @@ profit
 
 wget hash identifier website
 
+Remmina for RDP
+
 
 # Binary Exploitation
 
