@@ -8,43 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "5838c80b71bf9bb2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "WPscan.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "018adc3d86c92d95",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Nikto.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "be53775632d0213e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "John The ripper.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "69e817520543c788",
+            "id": "5ad7c6a981a467c3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -55,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -85,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#boot2root",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -102,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -184,14 +146,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "14e539eb863c2f89",
+  "active": "5ad7c6a981a467c3",
   "lastOpenFiles": [
-    "What the Shell.md",
+    "Linux useful commands.md",
     "WPscan.md",
-    "Nikto.md",
-    "Writeups.md",
-    "John The ripper.md",
     "Guide.md",
+    "John The ripper.md",
+    "Nikto.md",
+    "What the Shell.md",
+    "Writeups.md",
     "Gobuster.md",
     "README.md",
     "Testing the Git sync.md",
