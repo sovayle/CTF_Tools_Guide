@@ -8,9 +8,11 @@ discord:hacker101 & htb
 
 # Forensics
 
-software: HxD, Autopsy
+software: HxD, Autopsy, hexeditor(linux)
 
 # Web Exploitation
+
+gobuster
 
 # Cryptography
 
@@ -54,5 +56,9 @@ Remmina for RDP
 # OSINT
 
 # Steganography
+
+# boot2root
+exploitdb scripts
+gtfobins
 
 # Programming (Development challenges)
