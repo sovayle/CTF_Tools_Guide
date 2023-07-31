@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "23de4fa458f967b0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Metasploit.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Guide.md",
+                "file": "Metasploit.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Guide.md",
+                "file": "Metasploit.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Guide.md"
+                "file": "Metasploit.md"
               }
             }
           }
@@ -146,11 +159,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5ad7c6a981a467c3",
+  "active": "23de4fa458f967b0",
   "lastOpenFiles": [
+    "Guide.md",
+    "Metasploit.md",
     "Linux useful commands.md",
     "WPscan.md",
-    "Guide.md",
     "John The ripper.md",
     "Nikto.md",
     "What the Shell.md",
