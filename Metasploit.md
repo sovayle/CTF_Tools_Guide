@@ -26,6 +26,26 @@ sessions -i 1 to select number 1 in the session
 sessions
 
 
+modules:
+post/windows/gather/enum/domain
+
+
+meterpreter:
+sysinfo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
