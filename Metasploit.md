@@ -1,5 +1,10 @@
 msfconsole
 
+show options
+use 
+set 
+
+
 cd /usr/share/metasploit-framework/modules
 
 tree -L 1 auxiliary
@@ -32,10 +37,12 @@ post/windows/gather/enum/domain
 
 meterpreter:
 sysinfo
+hashdump
+search -f textfile.txt
+pid
+migrate
 
-
-
-
+use multi/manage/shell_to_meterpreter
 
 
 
