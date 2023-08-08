@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "another note.md",
+                "file": "FFUF.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "another note.md",
+                "file": "FFUF.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "another note.md",
+                "file": "FFUF.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "another note.md"
+                "file": "FFUF.md"
               }
             }
           }
@@ -162,7 +162,7 @@
   "active": "9572f7dafdeeec18",
   "lastOpenFiles": [
     "Linux useful commands.md",
-    "another note.md",
+    "FFUF.md",
     "Metasploit.md",
     "Untitled.canvas",
     "sdasd.md",
