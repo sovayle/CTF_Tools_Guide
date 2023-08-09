@@ -30,9 +30,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "442e19350945094c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "web exploitation file inclusion.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "FFUF.md",
+                "file": "web exploitation file inclusion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "FFUF.md",
+                "file": "web exploitation file inclusion.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "FFUF.md"
+                "file": "web exploitation file inclusion.md"
               }
             }
           }
@@ -159,10 +171,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9572f7dafdeeec18",
+  "active": "442e19350945094c",
   "lastOpenFiles": [
-    "Linux useful commands.md",
     "FFUF.md",
+    "web exploitation file inclusion.md",
+    "Linux useful commands.md",
     "Metasploit.md",
     "Untitled.canvas",
     "sdasd.md",

