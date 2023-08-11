@@ -13,7 +13,7 @@ software: HxD, Autopsy, hexeditor(linux)
 # Web Exploitation
 
 gobuster
-requestbin.com
+Catch http requests from a server: requestbin.com
 
 # Cryptography
 
