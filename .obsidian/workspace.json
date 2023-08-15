@@ -37,14 +37,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "FFUF.md",
+                "file": "Gobuster.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "708e6d7d58787cd1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "web exploitation file inclusion.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -110,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "FFUF.md",
+                "file": "web exploitation file inclusion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "FFUF.md",
+                "file": "web exploitation file inclusion.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "FFUF.md"
+                "file": "web exploitation file inclusion.md"
               }
             }
           }
@@ -171,22 +183,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "442e19350945094c",
+  "active": "708e6d7d58787cd1",
   "lastOpenFiles": [
-    "web exploitation file inclusion.md",
+    "FTP.md",
     "Guide.md",
-    "Linux useful commands.md",
+    "What the Shell.md",
+    "Nikto.md",
+    "WPscan.md",
+    "Writeups.md",
+    "John The ripper.md",
+    "Gobuster.md",
+    "README.md",
     "FFUF.md",
+    "web exploitation file inclusion.md",
+    "Linux useful commands.md",
     "Metasploit.md",
     "Untitled.canvas",
     "sdasd.md",
-    "Gobuster.md",
-    "John The ripper.md",
-    "WPscan.md",
-    "Nikto.md",
-    "What the Shell.md",
-    "Writeups.md",
-    "README.md",
     "Testing the Git sync.md",
     "Writeup.md",
     "Folder",
