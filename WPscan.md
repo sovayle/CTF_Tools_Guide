@@ -12,3 +12,4 @@ wpscan --url http://wpscan.thm/ --passwords /usr/share/wordlists/rockyou.txt --u
 ```
 wpscan --url fuscator.mcc -e p --plugins-detection mixed
 ```
+
