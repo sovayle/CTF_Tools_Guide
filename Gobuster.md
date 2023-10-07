@@ -1,5 +1,9 @@
 `gobuster dir -u http://10.10.10.10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt` 
 
+directory-list-2.3-small.txt
+
+directory-list-1.0.txt
+
 `gobuster dir -u http://10.10.252.123/myfolder -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x.html,.css,.js'
 
 -k flag to bypass HTTPS instead of http

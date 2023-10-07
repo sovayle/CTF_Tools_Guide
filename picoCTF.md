@@ -1,0 +1,1205 @@
+
+---
+
+layout: single
+
+title: "PicoCTF"
+
+permalink: /ctfs/picoctf
+
+toc: true
+
+toc_label: "Table of Contents"
+
+toc_icon: stream # tasks #"torii-gate"
+
+toc_sticky: true
+
+---
+
+  
+
+> picoCTF Writeups
+
+  
+
+# Introduction
+
+  
+
+This is writeup for picoCTF challenges
+
+  
+
+## RE
+
+  
+
+### Transformation
+
+> 20 points
+
+  
+
+Author: madStacks
+
+  
+
+Description
+
+I wonder what this really is... enc ''.join([chr((ord(flag[i]) << 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)])
+
+  
+
+enc file:
+
+```
+
+灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥㜰㍢㐸㙽
+
+```
+
+  
+
+decode.py file:
+
+```
+
+decode = '灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥㜰㍢㐸㙽'
+
+print(decode.encode('utf-16-be'))
+
+```
+
+solution:
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/Transformation]
+
+└─# python decode.py
+
+b'picoCTF{16_bits_inst34d_of_8_e703b486}'
+
+```
+
+  
+
+### keygenme-py
+
+> 30 points
+
+  
+
+Author: syreal
+
+  
+
+Description
+
+keygenme-trial.py
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/keygenme-py]
+
+└─# ls
+
+keygenme-trial.py solution.py
+
+```
+
+  
+
+solution.py:
+
+```
+
+import hashlib
+
+import base64
+
+  
+  
+
+key_part_static1_trial = "picoCTF{1n_7h3_|<3y_of_"
+
+key_part_dynamic1_trial = "xxxxxxxx"
+
+key_part_static2_trial = "}"
+
+key_full_template_trial = key_part_static1_trial + key_part_dynamic1_trial + key_part_static2_trial
+
+  
+
+username_trial = b"ANDERSON"
+
+  
+
+potential_dynamic_key = ""
+
+  
+
+# where our input begins:
+
+offset = 23
+
+  
+
+# positions in username_trial
+
+positions = [4,5,3,6,2,7,1,8]
+
+  
+
+for p in positions:
+
+potential_dynamic_key += hashlib.sha256(username_trial).hexdigest()[p]
+
+  
+
+key = key_part_static1_trial + potential_dynamic_key + key_part_static2_trial
+
+print(key)
+
+print(len(key))
+
+  
+
+```
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/keygenme-py]
+
+└─# python solution.py
+
+picoCTF{1n_7h3_|<3y_of_01582419}
+
+32
+
+```
+
+  
+  
+  
+  
+
+### crackme-py
+
+> 30 points
+
+  
+
+Author: syreal
+
+Description
+
+crackme.py
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/crackme-py]
+
+└─# ls
+
+crackme.py
+
+```
+
+```
+
+# Hiding this really important number in an obscure piece of code is brilliant!
+
+# AND it's encrypted!
+
+# We want our biggest client to know his information is safe with us.
+
+bezos_cc_secret = "A:4@r%uL`M-^M0c0AbcM-MFE02fh3e4a5N"
+
+  
+
+# Reference alphabet
+
+alphabet = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ"+ \
+
+"[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
+
+  
+  
+  
+
+def decode_secret(secret):
+
+"""ROT47 decode
+
+  
+
+NOTE: encode and decode are the same operation in the ROT cipher family.
+
+"""
+
+  
+
+# Encryption key
+
+rotate_const = 47
+
+  
+
+# Storage for decoded secret
+
+decoded = ""
+
+  
+
+# decode loop
+
+for c in secret:
+
+index = alphabet.find(c)
+
+original_index = (index + rotate_const) % len(alphabet)
+
+decoded = decoded + alphabet[original_index]
+
+  
+
+print(decoded)
+
+  
+  
+  
+
+def choose_greatest():
+
+"""Echo the largest of the two numbers given by the user to the program
+
+  
+
+Warning: this function was written quickly and needs proper error handling
+
+"""
+
+  
+
+user_value_1 = input("What's your first number? ")
+
+user_value_2 = input("What's your second number? ")
+
+greatest_value = user_value_1 # need a value to return if 1 & 2 are equal
+
+  
+
+if user_value_1 > user_value_2:
+
+greatest_value = user_value_1
+
+elif user_value_1 < user_value_2:
+
+greatest_value = user_value_2
+
+  
+
+print( "The number with largest positive magnitude is "
+
++ str(greatest_value) )
+
+  
+  
+  
+
+decode_secret("A:4@r%uL`M-^M0c0AbcM-MFE02fh3e4a5N")
+
+  
+
+```
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/crackme-py]
+
+└─# python crackme.py
+
+picoCTF{1|\/|_4_p34|\|ut_a79b6c2d}
+
+```
+
+  
+  
+  
+  
+  
+
+### ARMssembly 0
+
+> 40 points
+
+  
+
+Author: Dylan McGuire
+
+  
+
+Description
+
+What integer does this program print with arguments 4112417903 and 1169092511? File: chall.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
+
+  
+
+```
+
+.arch armv8-a
+
+.file "chall.c"
+
+.text
+
+.align 2
+
+.global func1
+
+.type func1, %function
+
+func1:
+
+sub sp, sp, #16
+
+str w0, [sp, 12] ; sp12 = 41124..
+
+str w1, [sp, 8] ; sp8 = 1169..
+
+ldr w1, [sp, 12] ;w1 = 41124..
+
+ldr w0, [sp, 8] ;w0 =1169..
+
+cmp w1, w0
+
+bls .L2 ;branch if less than or the same?
+
+ldr w0, [sp, 12]
+
+b .L3
+
+.L2:
+
+ldr w0, [sp, 8]
+
+.L3:
+
+add sp, sp, 16
+
+ret
+
+.size func1, .-func1
+
+.section .rodata
+
+.align 3
+
+.LC0:
+
+.string "Result: %ld\n"
+
+.text
+
+.align 2
+
+.global main
+
+.type main, %function
+
+main:
+
+stp x29, x30, [sp, -48]!
+
+add x29, sp, 0
+
+str x19, [sp, 16]
+
+str w0, [x29, 44]
+
+str x1, [x29, 32]
+
+ldr x0, [x29, 32] ;arg 0
+
+add x0, x0, 8 ;arg 1
+
+ldr x0, [x0] ;load into x0 the value at [x0] "4112417903"
+
+bl atoi ;ascii to integer
+
+mov w19, w0 ; put w0 into w19 which is 41124..
+
+ldr x0, [x29, 32]
+
+add x0, x0, 16
+
+ldr x0, [x0]
+
+bl atoi
+
+mov w1, w0
+
+mov w0, w19
+
+bl func1
+
+mov w1, w0
+
+adrp x0, .LC0
+
+add x0, x0, :lo12:.LC0
+
+bl printf
+
+mov w0, 0
+
+ldr x19, [sp, 16]
+
+ldp x29, x30, [sp], 48
+
+ret
+
+.size main, .-main
+
+.ident "GCC: (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0"
+
+.section .note.GNU-stack,"",@progbits
+
+  
+
+```
+
+solution:
+
+  
+
+python
+
+hex(4112417903)
+
+  
+
+picoCTF(hex)
+
+  
+
+### vault-door-training
+
+> 50 points
+
+  
+
+Author: Mark E. Haase
+
+  
+
+Description
+
+Your mission is to enter Dr. Evil's laboratory and retrieve the blueprints for his Doomsday Project. The laboratory is protected by a series of locked vault doors. Each door is controlled by a computer and requires a password to open. Unfortunately, our undercover agents have not been able to obtain the secret passwords for the vault doors, but one of our junior agents obtained the source code for each vault's computer! You will need to read the source code for each level to figure out what the password is for that vault door. As a warmup, we have created a replica vault in our training facility. The source code for the training vault is here: VaultDoorTraining.java
+
+  
+
+```
+
+import java.util.*;
+
+  
+
+class VaultDoorTraining {
+
+public static void main(String args[]) {
+
+VaultDoorTraining vaultDoor = new VaultDoorTraining();
+
+Scanner scanner = new Scanner(System.in);
+
+System.out.print("Enter vault password: ");
+
+String userInput = scanner.next();
+
+String input = userInput.substring("picoCTF{".length(),userInput.length()-1);
+
+if (vaultDoor.checkPassword(input)) {
+
+System.out.println("Access granted.");
+
+} else {
+
+System.out.println("Access denied!");
+
+}
+
+}
+
+  
+
+// The password is below. Is it safe to put the password in the source code?
+
+// What if somebody stole our source code? Then they would know what our
+
+// password is. Hmm... I will think of some ways to improve the security
+
+// on the other doors.
+
+//
+
+// -Minion #9567
+
+public boolean checkPassword(String password) {
+
+return password.equals("w4rm1ng_Up_w1tH_jAv4_eec0716b713");
+
+}
+
+}
+
+  
+
+```
+
+  
+
+### speeds and feeds
+
+> 50 points
+
+  
+
+Author: Ryan Ramseyer
+
+Description
+
+There is something on my shop network running at nc mercury.picoctf.net 33596, but I can't tell what it is. Can you?
+
+  
+
+solution: go to ncviewer.com
+
+  
+
+flag: picoCTF{num3r1cal_c0ntr0l_e7749028}'
+
+  
+
+### shop
+
+> 50 points
+
+  
+
+Author: thelshell
+
+  
+
+Description
+
+Best Stuff - Cheap Stuff, Buy Buy Buy... Store Instance: source. The shop is open for business at nc mercury.picoctf.net 24851
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali]
+
+└─# nc mercury.picoctf.net 24851
+
+Welcome to the market!
+
+=====================
+
+You have 40 coins
+
+Item Price Count
+
+(0) Quiet Quiches 10 12
+
+(1) Average Apple 15 8
+
+(2) Fruitful Flag 100 1
+
+(3) Sell an Item
+
+(4) Exit
+
+Choose an option:
+
+1
+
+How many do you want to buy?
+
+-10
+
+You have 190 coins
+
+Item Price Count
+
+(0) Quiet Quiches 10 12
+
+(1) Average Apple 15 18
+
+(2) Fruitful Flag 100 1
+
+(3) Sell an Item
+
+(4) Exit
+
+Choose an option:
+
+2
+
+How many do you want to buy?
+
+1
+
+Flag is: [112 105 99 111 67 84 70 123 98 52 100 95 98 114 111 103 114 97 109 109 101 114 95 53 51 50 98 99 100 57 56 125]
+
+```
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/shop]
+
+└─# python
+
+Python 3.11.4 (main, Jun 7 2023, 10:13:09) [GCC 12.2.0] on linux
+
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> s = '112 105 99 111 67 84 70 123 98 52 100 95 98 114 111 103 114 97 109 109 101 114 95 53 51 50 98 99 100 57 56 125'
+
+>>> l = s.split(' ')
+
+>>> l
+
+['112', '105', '99', '111', '67', '84', '70', '123', '98', '52', '100', '95', '98', '114', '111', '103', '114', '97', '109', '109', '101', '114', '95', '53', '51', '50', '98', '99', '100', '57', '56', '125']
+
+>>> str = ""
+
+>>> for i in l:
+
+... str = str + chr(int(i))
+
+...
+
+>>> str
+
+'picoCTF{b4d_brogrammer_532bcd98}'
+
+```
+
+Flag: picoCTF{b4d_brogrammer_532bcd98}'
+
+  
+
+### ARMssembly 1
+
+> 70 points
+
+  
+
+Author: Pranay Garg
+
+  
+
+Description
+
+For what argument does this program print `win` with variables 81, 0 and 3? File: chall_1.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
+
+  
+
+```
+
+.arch armv8-a
+
+.file "chall_1.c"
+
+.text
+
+.align 2
+
+.global func
+
+.type func, %function
+
+func:
+
+sub sp, sp, #32
+
+str w0, [sp, 12] ;want this, call it X...... stack + 12 is user input
+
+mov w0, 81
+
+str w0, [sp, 16] ;store value of 81 in w0 to sp+16=81
+
+str wzr, [sp, 20] ;store value of wzr(0) into sp+20=0
+
+mov w0, 3 ;store 3 in w0=3
+
+str w0, [sp, 24] ;store value of w0 which is 3 into sp+24=3
+
+ldr w0, [sp, 20] ;load from sp+20 put in w0 now it is 0 w0=0
+
+ldr w1, [sp, 16] ;load from sp+16 put in w1 now it is 81 w1=81
+
+lsl w0, w1, w0 ;logical shift left so w0 = w1 << w0 which is w0 = 81 << 0 which is w0 = 81 (2^0) so w0 = 81
+
+str w0, [sp, 28] ;store value of w0 into sp+28 now sp+28 is 81
+
+ldr w1, [sp, 28] ;load value of sp+28 into w1, w1 now 81
+
+ldr w0, [sp, 24] ;load value sp+24 into w0, w0 now 3
+
+sdiv w0, w1, w0 ;w0 = w1/w0 which is w0 = 81/3 = 27
+
+str w0, [sp, 28] ; store w0 into sp+28 = 27
+
+ldr w1, [sp, 28] ; w1 = 27
+
+ldr w0, [sp, 12] ; w0 = x
+
+sub w0, w1, w0 ; w0 = 27 - x, x=27 because we want w0 to be 0
+
+str w0, [sp, 28]
+
+ldr w0, [sp, 28]
+
+add sp, sp, 32
+
+ret
+
+.size func, .-func
+
+.section .rodata
+
+.align 3
+
+.LC0:
+
+.string "You win!"
+
+.align 3
+
+.LC1:
+
+.string "You Lose :("
+
+.text
+
+.align 2
+
+.global main
+
+.type main, %function
+
+main:
+
+stp x29, x30, [sp, -48]!
+
+add x29, sp, 0
+
+str w0, [x29, 28]
+
+str x1, [x29, 16]
+
+ldr x0, [x29, 16]
+
+add x0, x0, 8
+
+ldr x0, [x0]
+
+bl atoi
+
+str w0, [x29, 44]
+
+ldr w0, [x29, 44]
+
+bl func
+
+cmp w0, 0 ;compare w0 with 0
+
+bne .L4 ;goes to bad area which is lose so if w0 =/= 0 then go bad area, else win
+
+adrp x0, .LC0
+
+add x0, x0, :lo12:.LC0
+
+bl puts
+
+b .L6
+
+.L4:
+
+adrp x0, .LC1
+
+add x0, x0, :lo12:.LC1
+
+bl puts
+
+.L6:
+
+nop
+
+ldp x29, x30, [sp], 48
+
+ret
+
+.size main, .-main
+
+.ident "GCC: (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0"
+
+.section .note.GNU-stack,"",@progbits
+
+  
+
+```
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali/Downloads/RE/Armssembly_1]
+
+└─# python
+
+Python 3.11.4 (main, Jun 7 2023, 10:13:09) [GCC 12.2.0] on linux
+
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> hex(27)
+
+'0x1b'
+
+```
+
+  
+
+flag: picoCTF{0000001b}
+
+  
+  
+
+### ARMssembly 2
+
+  
+
+Author: Dylan McGuire
+
+  
+
+Description
+
+What integer does this program print with argument 2610164910? File: chall_2.S Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
+
+  
+
+```
+
+.arch armv8-a
+
+.file "chall_2.c"
+
+.text
+
+.align 2
+
+.global func1
+
+.type func1, %function
+
+func1:
+
+sub sp, sp, #32
+
+str w0, [sp, 12] ;sp+12 = 2610164910
+
+str wzr, [sp, 24] ;sp+24 = 0
+
+str wzr, [sp, 28] ;sp+28 = 0
+
+b .L2
+
+.L3:
+
+ldr w0, [sp, 24] ;sp+24= 2610164910
+
+add w0, w0, 3 ;2610164910 + 3? = 2610164913
+
+str w0, [sp, 24] ;sp+24 = 2610164913
+
+ldr w0, [sp, 28] ;w0 = 0
+
+add w0, w0, 1 ;w0=1
+
+str w0, [sp, 28] ;sp+28=1 do this until stack sp+28 > stack sp+12...but how many times till done? +3 everytime on main number and so the number will be 2610164910* 3 after w1= 2610164910 which will bypass loop. then, turn into hex and make it a 32bit number
+
+.L2:
+
+ldr w1, [sp, 28] ;w1 = 0
+
+ldr w0, [sp, 12] ;w0 = 2610164910
+
+cmp w1, w0 ;
+
+bcc .L3 ;unsign comparison..is w1 < w0 unsigned Go to label "L3" if "w1" < "w0"...
+
+ldr w0, [sp, 24] ;load 2610164910
+
+add sp, sp, 32
+
+ret
+
+.size func1, .-func1
+
+.section .rodata
+
+.align 3
+
+.LC0:
+
+.string "Result: %ld\n"
+
+.text
+
+.align 2
+
+.global main
+
+.type main, %function
+
+main:
+
+stp x29, x30, [sp, -48]!
+
+add x29, sp, 0
+
+str w0, [x29, 28] ;
+
+str x1, [x29, 16]
+
+ldr x0, [x29, 16]
+
+add x0, x0, 8
+
+ldr x0, [x0]
+
+bl atoi
+
+bl func1
+
+str w0, [x29, 44]
+
+adrp x0, .LC0
+
+add x0, x0, :lo12:.LC0
+
+ldr w1, [x29, 44]
+
+bl printf
+
+nop
+
+ldp x29, x30, [sp], 48
+
+ret
+
+.size main, .-main
+
+.ident "GCC: (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0"
+
+.section .note.GNU-stack,"",@progbits
+
+  
+
+```
+
+  
+
+bcc= branch if the carry flag is set (it is set when w1 < w0)! This is our loop!
+
+  
+
+We could maybe imagine it like this:
+
+  
+
+while w1 >= w0:
+
+L3()
+
+  
+
+```
+
+┌──(root㉿kali)-[/home/kali]
+
+└─# python
+
+Python 3.11.4 (main, Jun 7 2023, 10:13:09) [GCC 12.2.0] on linux
+
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> result = int(hex(7830494730),16) & 0xffffffff
+
+>>> f'{result:08x}'
+
+'d2bbde0a'
+
+```
+
+flag = picoCTF{d2bbde0a}
+
+  
+
+### vault-door-1
+
+> 100 points
+
+  
+
+Author: Mark E. Haase
+
+  
+
+Description
+
+This vault uses some complicated arrays! I hope you can make sense of it, special agent. The source code for this vault is here: VaultDoor1.java
+
+  
+
+solution: reorganise the lines checkfunction function in ascending order and obtain the password.
+
+  
+
+flag:picoCTF{d35cr4mb3_tH3_cH4r4cT3r5_ff63b0}
+
+  
+
+### file-run
+
+  
+
+#### file-run1
+
+  
+
+Author: Will Hong
+
+  
+
+Description
+
+A program has been provided to you, what happens if you try to run it on the command line? Download the program here.
+
+  
+
+solution: make the file executable with chmod +x <nameoffile> then run the file ./<nameoffile>
+
+  
+
+flag: picoCTF{U51N6_Y0Ur_F1r57_F113_47cf2b7b}
+
+  
+
+#### file-run 2
+
+  
+
+Description
+
+  
+
+Another program, but this time, it seems to want some input. What happens if you try to run it on the command line with input "Hello!"? Download the program here.
+
+  
+
+solution: make the file executable with chmod +x <nameoffile> then run the file ./<nameoffile> Hello!
+
+  
+
+flag: picoCTF{F1r57_4rgum3n7_f65ed63e}
+
+  
+
+### GDB Test Drive
+
+  
+
+Author: LT 'syreal' Jones
+
+  
+
+Description
+
+Can you get the flag? Download this binary. Here's the test drive instructions:
+
+  
+
+$ chmod +x gdbme
+
+$ gdb gdbme
+
+(gdb) layout asm
+
+(gdb) break *(main+99)
+
+(gdb) run
+
+(gdb) jump *(main+104)
+
+  
+
+flag: picoCTF{d3bugg3r_dr1v3_7776d758}
+
+  
+
+### patchme.py
+
+  
+
+Author: LT 'syreal' Jones
+
+  
+
+Description
+
+Can you get the flag? Run this Python program in the same directory as this encrypted flag.
+
+  
+
+solution: input should be "ak98-=90adfjhgj321sleuth9000" based on the patchme.flag.py code.
+
+  
+
+flag: picoCTF{p47ch1ng_l1f3_h4ck_c4a4688b}
+
+  
+
+### droids0
+
+  
+
+Author: Jason
+
+Description
+
+Where do droid logs go. Check out this file.
+
+  
+
+apktool d zero.apk
+
+  
+
+┌──(root㉿kali)-[/usr/local/AndroidStudio/android-studio/bin]
+
+└─# ./studio.sh
